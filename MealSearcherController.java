@@ -8,6 +8,7 @@ public class MealSearcherController {
 	
 	private MealSearcherModel model;
 	private MealSearcherView view;
+	private String name;
 	
 	public MealSearcherController(MealSearcherView view, MealSearcherModel model) {
 		this.view = view;
