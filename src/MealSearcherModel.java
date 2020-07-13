@@ -1,5 +1,4 @@
-package main;
-
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -16,8 +15,8 @@ public class MealSearcherModel {
 	private Path path;
 	private List<String> lines;
 	
-	public List<String> readFile() {
-		url = this.getClass().getResource("Omletten.txt");
+	public List<String> readFile(String name) {
+		url = this.getClass().getResource(name);
 		try {
 			path = Paths.get(url.toURI());
 		} catch (URISyntaxException e) {
@@ -29,5 +28,15 @@ public class MealSearcherModel {
 			e.printStackTrace();
 		}
 		return lines;
+	}
+	
+	public void readAllFilesFromPackage() {
+		
+		File sourcePackage = new File("\\receips");
+		
+		for (File sourceFile : sourcePackage.listFiles()) {
+		
+			
+		}
 	}
 }

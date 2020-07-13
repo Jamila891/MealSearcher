@@ -1,5 +1,3 @@
-package main;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -33,10 +31,10 @@ public class MealSearcherView {
 		
 		root.getChildren().addAll(lblIngredient1, txtIngredient1, lblIngredient2, txtIngredient2, btnSearch, displayRezept);
 		
-		Scene scene = new Scene(root, 500, 500);
+		Scene scene = new Scene(root, 900, 500);
 		stage.setScene(scene);
 		stage.setTitle("Meal Searcher");
-		stage.setResizable(false);
+		stage.setResizable(true);
 	}
 	
 	public void start() {
