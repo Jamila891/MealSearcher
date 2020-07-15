@@ -11,6 +11,7 @@ import java.util.List;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Hyperlink;
 
 public class MealSearcherModel {
 	
@@ -74,5 +75,12 @@ public class MealSearcherModel {
 		}
 		System.out.println(allFiles);
 		return allFiles;
+	}
+	
+	public Hyperlink makeHyperlink () {
+		Hyperlink hyperlink = new Hyperlink();
+		// get the hyperlink by going through the recipes (last line in recipe)
+		
+		return hyperlink;
 	}
 }

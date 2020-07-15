@@ -1,8 +1,13 @@
 package jamila.app.mealsearcher;
+import java.awt.Desktop;
+import java.net.URI;
 import java.nio.file.Path;
 import java.util.List;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 public class MealSearcherController {
 	
@@ -17,6 +22,7 @@ public class MealSearcherController {
 		view.txtIngredient1.textProperty().addListener((observable, oldValue, newValue) -> setTextToProperty(newValue));
 		
 		view.btnSearch.setOnAction(this::searchForReceipe);
+		view.recipeWeblink.setOnAction(this::openRecipeWeblink);
 		
 	}
 	
@@ -26,7 +32,10 @@ public class MealSearcherController {
 	}
 	
 	public void searchForReceipe(ActionEvent event) {
-		String searchString = model.getIngredient1();
+		String ingredientName1 = model.getIngredient1();
+		String ingredientName2 = model.getIngredient2();
+		
+		String searchString = null;
 		
 		List<String> list = model.readAllFilesFromPackage();
 		
@@ -43,6 +52,17 @@ public class MealSearcherController {
 		} else {
 			view.displayRezept.setText("Kein passendes Rezept vorhanden.");
 		}
+	}
+	
+	public void openRecipeWeblink(ActionEvent e) {
+		String url = "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/HWL_TEIG1996_02/omeletten/";
+		try {
+			  Desktop desktop = java.awt.Desktop.getDesktop();
+			  URI oURL = new URI(url);
+			  desktop.browse(oURL);
+			} catch (Exception ex) {
+			  ex.printStackTrace();
+			}
 	}
 
 }

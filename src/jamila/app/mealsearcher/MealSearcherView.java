@@ -13,7 +13,7 @@ public class MealSearcherView {
 	
 	private Stage stage;
 	private MealSearcherModel model;
-	Button btnSearch;
+	Button btnSearch, recipeWeblink;
 	TextField txtIngredient1, txtIngredient2;
 	Label lblIngredient1, lblIngredient2;
 	TextArea displayRezept;
@@ -29,8 +29,10 @@ public class MealSearcherView {
 		this.txtIngredient2 = new TextField();
 		this.btnSearch = new Button("Search");
 		this.displayRezept = new TextArea();
+		this.recipeWeblink = new Button("Find this recipe online!");
 		
-		root.getChildren().addAll(lblIngredient1, txtIngredient1, lblIngredient2, txtIngredient2, btnSearch, displayRezept);
+		
+		root.getChildren().addAll(lblIngredient1, txtIngredient1, lblIngredient2, txtIngredient2, btnSearch, displayRezept, recipeWeblink);
 		
 		Scene scene = new Scene(root, 900, 500);
 		stage.setScene(scene);
