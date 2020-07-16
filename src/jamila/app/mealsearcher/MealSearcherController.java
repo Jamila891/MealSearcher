@@ -1,6 +1,8 @@
 package jamila.app.mealsearcher;
 import java.awt.Desktop;
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -21,7 +23,7 @@ public class MealSearcherController {
 		view.txtIngredient1.textProperty().addListener((observable, oldValue, newValue) -> setTextToProperty(newValue));
 		view.txtIngredient1.textProperty().addListener((observable, oldValue, newValue) -> setTextToProperty(newValue));
 		
-		view.btnSearch.setOnAction(this::searchForReceipe);
+		view.btnSearch.setOnAction(this::setTextOfChosenRecipe);
 		view.recipeWeblink.setOnAction(this::openRecipeWeblink);
 		
 	}
@@ -31,23 +33,11 @@ public class MealSearcherController {
 		model.setIngredient2(newValue);
 	}
 	
-	public void searchForReceipe(ActionEvent event) {
-		String ingredientName1 = model.getIngredient1();
-		String ingredientName2 = model.getIngredient2();
-		
-		String searchString = null;
-		
-		List<String> list = model.readAllFilesFromPackage();
-		
-		
-		
-		String recipe = " ";
-		
-		for (String s : list) {
-			recipe += s + "\n";
-		}
-		
-		if (recipe.contains(searchString)) {
+	public void setTextOfChosenRecipe(ActionEvent event) {
+		String recipe = model.searchRecipe();
+		System.out.println(model.readLastLine());
+	
+		if (recipe.contains(model.searchRecipe())) {
 			view.displayRezept.setText(recipe);
 		} else {
 			view.displayRezept.setText("Kein passendes Rezept vorhanden.");
@@ -59,8 +49,12 @@ public class MealSearcherController {
 		try {
 			  Desktop desktop = java.awt.Desktop.getDesktop();
 			  URI oURL = new URI(url);
-			  desktop.browse(oURL);
-			} catch (Exception ex) {
+			  try {
+				desktop.browse(oURL);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			} catch (URISyntaxException ex) {
 			  ex.printStackTrace();
 			}
 	}
