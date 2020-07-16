@@ -18,14 +18,15 @@ public class MealSearcherModel {
 	public SimpleStringProperty ingredient1;
 	public SimpleStringProperty ingredient2;
 	public ArrayList<Recipe> recipe;
+	public Recipe chosenRecipe;
 	
 	public MealSearcherModel() {
 		this.ingredient1 = new SimpleStringProperty();
 		this.ingredient2 = new SimpleStringProperty();
 		
 		this.recipe = new ArrayList<Recipe>();
-		recipe.add(new Recipe("Omlette", "Öl in die Pfanne und Teig rein", new Ingredients("300ml", "Milch")));
-		recipe.add(new Recipe("Zürich Geschnetzeltes", "Ein bisschen Fleisch, Nudeln und Rahmsauce in die Pfanne", new Ingredients("5kg", "Rindfleisch")));
+		recipe.add(new Recipe("Omlette", "Öl in die Pfanne und Teig rein", "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/HWL_TEIG1996_02/omeletten/", new Ingredients("300ml", "Milch")));
+		recipe.add(new Recipe("Zürich Geschnetzeltes", "Ein bisschen Fleisch, Nudeln und Rahmsauce in die Pfanne", "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/LM201401_83/zuercher-geschnetzeltes/", new Ingredients("5kg", "Rindfleisch")));
 	
 	}
 	
@@ -55,7 +56,6 @@ public class MealSearcherModel {
 	
 	public Recipe findYourRecipe() {
 		String searchString = getIngredient1();
-		Recipe chosenRecipe = null;
 		
 		for (Recipe r : recipe) {
 			String re = r.convertRecipeToString();
@@ -66,39 +66,10 @@ public class MealSearcherModel {
 		return chosenRecipe;
 	}
 	
-	public String readLastLine() {
-		List<String> l = readAllFilesFromPackage();
-		String lastLine = l.get(l.size() - 1);
-		return lastLine;
-	}
-	
-	public String getURL () {
-		// get the URL by going through the recipes (last line in recipe)
-		List<String> list = readAllFilesFromPackage();
-		String url = " ";
-		for (String s : list) {
-			if (s.contains(getIngredient1())) {
-				//url += s.readLastLine();
-			}
-		}
+	public String getURL() {
+		String url = chosenRecipe.getUrlToRecipe();
 		return url;
-	}
-	
-	public String searchRecipe() {
-		String ingredientName1 = getIngredient1();
-		String ingredientName2 = getIngredient2();
-		
-		String searchString = null;
-		
-		List<String> list = readAllFilesFromPackage();
-		
-		String recipe = " ";
-		
-		for (String s : list) {
-			recipe += s;
-		}
-		return recipe;
-	}
+	}	
 }
 
 /* this method should read all recipes in the Package "recipes" and use a searchString, which is the value 
@@ -110,29 +81,6 @@ open questions:
 - how can I iterate with two searchStrings through the recipe?
 - what possibilities do I have if multiple recipes match the two searchStrings?
 */
-
-
-
-//List<String> lines = null;
-//List<String> allFiles = new ArrayList<String>();
-//
-//File sourcePackage = new File("src/recipes/");
-////String path = sourcePackage.getAbsolutePath();
-//
-//for (File sourceFile : sourcePackage.listFiles()) {
-//	try {
-//		lines = Files.readAllLines(Paths.get(sourceFile.getPath()));
-//		
-//	} catch (IOException e) {
-//		e.printStackTrace();
-//	}
-//} for (String f : lines) {
-//	allFiles.add(f + "\n");
-//}
-//return allFiles; // still only returns first recipe, but not the whole list
-
-
-
 
 
 

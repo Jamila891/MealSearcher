@@ -34,14 +34,13 @@ public class MealSearcherController {
 	}
 	
 	public void setTextOfChosenRecipe(ActionEvent event) {
-		String recipe = model.searchRecipe();
-		System.out.println(model.readLastLine());
+		String recipe = "";
 	
-		if (recipe.contains(model.searchRecipe())) {
-			view.displayRezept.setText(recipe);
-		} else {
-			view.displayRezept.setText("Kein passendes Rezept vorhanden.");
-		}
+//		if (recipe.contains(model.searchRecipe())) {
+//			view.displayRezept.setText(recipe);
+//		} else {
+//			view.displayRezept.setText("Kein passendes Rezept vorhanden.");
+//		}
 	}
 	
 	public void openRecipeWeblink(ActionEvent e) {
