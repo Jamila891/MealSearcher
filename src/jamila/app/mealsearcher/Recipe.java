@@ -33,7 +33,5 @@ public class Recipe {
 		
 		return recipeAsString;
 	}
-	
-	
 
 }
