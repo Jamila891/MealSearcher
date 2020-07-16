@@ -9,4 +9,5 @@ open Requirements:
 - Offline Version
 - Rating System for recipes (stars)
 - advanced searching settings
+- mobile App
 - ...
