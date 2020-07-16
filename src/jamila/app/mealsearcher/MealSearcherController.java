@@ -44,7 +44,7 @@ public class MealSearcherController {
 	}
 	
 	public void openRecipeWeblink(ActionEvent e) {
-		String url = "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/HWL_TEIG1996_02/omeletten/";
+		String url = model.getURL();
 		try {
 			  Desktop desktop = java.awt.Desktop.getDesktop();
 			  URI oURL = new URI(url);

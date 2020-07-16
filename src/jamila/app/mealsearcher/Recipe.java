@@ -8,6 +8,7 @@ public class Recipe {
 	private Ingredients[] ingredient;
 	private String instructions;
 	private String urlToRecipe;
+	// TODO: amount change depending on how many people are eating
 	
 	public Recipe (String name, String instructions, String urlToRecipe, Ingredients...in) {
 		this.name = name;
