@@ -19,6 +19,7 @@ public class MealSearcherModel {
 	public SimpleStringProperty ingredient2;
 	public ArrayList<Recipe> recipe;
 	public Recipe chosenRecipe;
+	public Ingredients ingredients;
 	
 	public MealSearcherModel() {
 		this.ingredient1 = new SimpleStringProperty();
@@ -27,10 +28,9 @@ public class MealSearcherModel {
 		this.recipe = new ArrayList<Recipe>();
 		recipe.add(new Recipe("Omlette", "Öl in die Pfanne und Teig rein", "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/HWL_TEIG1996_02/omeletten/", new Ingredients("300ml", "Milch")));
 		recipe.add(new Recipe("Zürich Geschnetzeltes", "Ein bisschen Fleisch, Nudeln und Rahmsauce in die Pfanne", "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/LM201401_83/zuercher-geschnetzeltes/", new Ingredients("5kg", "Rindfleisch")));
-	
 	}
 	
-	public SimpleStringProperty ingredient1Property() {
+	public SimpleStringProperty ingredient1Property() {		
 		return ingredient1;
 	}
 	
@@ -47,23 +47,43 @@ public class MealSearcherModel {
 	}
 	
 	public String getIngredient1() {
-		return ingredient1.get();
+		return ingredients.getIngredient();
 	}
 	
 	public String getIngredient2() {
-		return ingredient2.get();
+		
+		for (int i = 0; i < recipe.size(); i++) {
+			Recipe r = recipe.get(i);
+			Ingredients[] in = r.getIngredient();
+		}
+		return ingredients.getIngredient();
+	}
+	
+	public void setChosenRecipe(Recipe r) {
+		this.chosenRecipe = r;
+	}
+	
+	public Recipe getChosenRecipe() {
+		return this.chosenRecipe;
 	}
 	
 	public Recipe findYourRecipe() {
-		String searchString = getIngredient1();
+		String searchString1 = getIngredient1();// wählt falsches Feld aus deswegen gibt es eine NullPointerException
+		String searchString2 = getIngredient2();
+		
+		String re;
 		
 		for (Recipe r : recipe) {
-			String re = r.convertRecipeToString();
-			if (re.contains(searchString)) {
-				chosenRecipe = r;
+			re = r.toString();
+			
+			if (re.contains(searchString1)) {
+				r = this.chosenRecipe;
+			}
+			if (re.contains(searchString2)) {
+				r = this.chosenRecipe;
 			}
 		}
-		return chosenRecipe;
+		return this.chosenRecipe;
 	}
 	
 	public String getURL() {

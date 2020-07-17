@@ -41,9 +41,12 @@ public class Recipe {
 		this.urlToRecipe = urlToRecipe;
 	}
 	
-	public String convertRecipeToString() {
-		String recipeAsString = " ";
-		
+	public Ingredients[] getIngredient() {
+		return ingredient;
+	}
+	
+	public String toString() {
+		String recipeAsString = this.name + " \n" + this.instructions + " \n" + this.ingredient + " \n" + this.urlToRecipe;
 		return recipeAsString;
 	}
 

@@ -6,15 +6,19 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.util.List;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 public class MealSearcherController {
 	
 	private MealSearcherModel model;
 	private MealSearcherView view;
+	private Recipe recipe;
 	
 	public MealSearcherController(MealSearcherView view, MealSearcherModel model) {
 		this.view = view;
@@ -24,7 +28,8 @@ public class MealSearcherController {
 		view.txtIngredient1.textProperty().addListener((observable, oldValue, newValue) -> setTextToProperty(newValue));
 		
 		view.btnSearch.setOnAction(this::setTextOfChosenRecipe);
-		view.recipeWeblink.setOnAction(this::openRecipeWeblink);
+		view.btnRecipeWeblink.setOnAction(this::openRecipeWeblink);
+		view.btnAddRecipe.setOnAction(this::addRecipe);
 		
 	}
 	
@@ -34,13 +39,10 @@ public class MealSearcherController {
 	}
 	
 	public void setTextOfChosenRecipe(ActionEvent event) {
-		String recipe = "";
+		Recipe r = model.findYourRecipe();
+		System.out.println(r.toString());
 	
-//		if (recipe.contains(model.searchRecipe())) {
-//			view.displayRezept.setText(recipe);
-//		} else {
-//			view.displayRezept.setText("Kein passendes Rezept vorhanden.");
-//		}
+		//view.displayRezept.setText(r.toString());
 	}
 	
 	public void openRecipeWeblink(ActionEvent e) {
@@ -57,5 +59,16 @@ public class MealSearcherController {
 			  ex.printStackTrace();
 			}
 	}
-
+	
+	public void addRecipe (ActionEvent e) {
+		
+	
+	}
 }
+
+
+
+
+
+
+
