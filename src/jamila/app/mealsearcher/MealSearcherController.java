@@ -40,42 +40,54 @@ public class MealSearcherController {
 	
 	public void setTextOfChosenRecipe(ActionEvent event) {
 		ArrayList<Recipe> r = model.findYourRecipe();
+		
+		/* Wenn ich Rindfleisch (Ingredient1) und Milch (Ingredient2) eingebe, dann bekomme ich nur das Rezept Rindfleisch 
+		aber wenn ich Milch und Rindfleisch eingebe, bekomme ich alle 4 Rezepte. Why?
+		*/
+		
+		for (Recipe re : r) {
+			System.out.println(re);
+		}
 
 		Recipe recipe1 = null, recipe2 = null;
-		if (!r.isEmpty()) {
-			if (r.size() < 2) {
-				recipe1 = r.get(0);
-				view.recipe1.setText(recipe1.toString());
-			}
-			recipe1 = r.get(0);
-			recipe2 = r.get(1);
-			view.recipe1.setText(recipe1.toString());
-			view.recipe2.setText(recipe2.toString());
 		
-		} else {
-			view.recipe1.setText("No recipe available. Please add new Recipe in other Tab.");
+		switch (r.size()) {
+		
+		case 0: view.recipe1.setText("No recipe available. Please add new Recipe in other Tab.");
+			break;
+		
+		case 1: recipe1 = r.get(0);
+		view.recipe1.setText(recipe1.toString());
+			break;
+		
+		case 2: recipe1 = r.get(0);
+		recipe2 = r.get(1);
+		view.recipe1.setText(recipe1.toString());
+		view.recipe2.setText(recipe2.toString());
+			break;
+		
+		default: view.recipe1.setText("There are more than 2 recipe according to your Searchterm. Please specify.");
+		
 		}
-		
-		
 	}
 	
 	public void openRecipeWeblink(ActionEvent e) {
 		String url = model.getURL();
+		
 		try {
 			  Desktop desktop = java.awt.Desktop.getDesktop();
 			  URI oURL = new URI(url);
 			  try {
 				desktop.browse(oURL);
-			} catch (IOException e1) {
+			  } catch (IOException e1) {
 				e1.printStackTrace();
-			}
-			} catch (URISyntaxException ex) {
-			  ex.printStackTrace();
-			}
+			  	}
+				} catch (URISyntaxException ex) {
+					ex.printStackTrace();
+				}
 	}
 	
 	public void addNewRecipeToArrayList (ActionEvent e) {
-		
 		String name = view.ARnametxt.getText();
 		String instructions = view.ARinstructionstxt.getText();
 		String url = view.ARurltxt.getText();

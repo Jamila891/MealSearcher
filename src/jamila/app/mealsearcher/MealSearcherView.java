@@ -94,6 +94,8 @@ public class MealSearcherView {
 		stage.setScene(scene);
 		stage.setTitle("Meal Searcher");
 		stage.setResizable(true);
+		
+		scene.getStylesheets().add(getClass().getResource("mealsearcher.css").toExternalForm());
 	}
 	
 	public void start() {
