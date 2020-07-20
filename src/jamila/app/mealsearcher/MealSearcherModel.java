@@ -17,17 +17,18 @@ public class MealSearcherModel {
 	
 	public SimpleStringProperty ingredient1;
 	public SimpleStringProperty ingredient2;
-	public ArrayList<Recipe> recipe;
+	public ArrayList<Recipe> recipe, matchingRecipe;
 	public Recipe chosenRecipe;
-	public Ingredients ingredients;
 	
 	public MealSearcherModel() {
 		this.ingredient1 = new SimpleStringProperty();
 		this.ingredient2 = new SimpleStringProperty();
 		
 		this.recipe = new ArrayList<Recipe>();
+		this.matchingRecipe = new ArrayList<Recipe>();
 		recipe.add(new Recipe("Omlette", "Öl in die Pfanne und Teig rein", "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/HWL_TEIG1996_02/omeletten/", new Ingredients("300ml", "Milch")));
 		recipe.add(new Recipe("Zürich Geschnetzeltes", "Ein bisschen Fleisch, Nudeln und Rahmsauce in die Pfanne", "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/LM201401_83/zuercher-geschnetzeltes/", new Ingredients("5kg", "Rindfleisch")));
+		recipe.add(new Recipe("Milchreis", "Milch und Reis in die Pfanne geben und Hob de Bäse", "www.google.com", new Ingredients("5l", "Milch"), new Ingredients("2 Körner", "Reis")));
 	}
 	
 	public SimpleStringProperty ingredient1Property() {		
@@ -47,16 +48,11 @@ public class MealSearcherModel {
 	}
 	
 	public String getIngredient1() {
-		return ingredients.getIngredient();
+		return ingredient1.get();
 	}
 	
 	public String getIngredient2() {
-		
-		for (int i = 0; i < recipe.size(); i++) {
-			Recipe r = recipe.get(i);
-			Ingredients[] in = r.getIngredient();
-		}
-		return ingredients.getIngredient();
+		return ingredient2.get();
 	}
 	
 	public void setChosenRecipe(Recipe r) {
@@ -64,26 +60,24 @@ public class MealSearcherModel {
 	}
 	
 	public Recipe getChosenRecipe() {
+		
+		ArrayList<Recipe> re = findYourRecipe();
+		for (Recipe r : re) {
+			this.chosenRecipe = r;
+		}
 		return this.chosenRecipe;
 	}
 	
-	public Recipe findYourRecipe() {
-		String searchString1 = getIngredient1();// wählt falsches Feld aus deswegen gibt es eine NullPointerException
+	public ArrayList<Recipe> findYourRecipe() {
+		String searchString1 = getIngredient1();
 		String searchString2 = getIngredient2();
 		
-		String re;
-		
 		for (Recipe r : recipe) {
-			re = r.toString();
-			
-			if (re.contains(searchString1)) {
-				r = this.chosenRecipe;
-			}
-			if (re.contains(searchString2)) {
-				r = this.chosenRecipe;
+			if (r.hasIngredient(searchString1) && r.hasIngredient(searchString2)) {
+				this.matchingRecipe.add(r);
 			}
 		}
-		return this.chosenRecipe;
+		return this.matchingRecipe;
 	}
 	
 	public String getURL() {
@@ -91,16 +85,6 @@ public class MealSearcherModel {
 		return url;
 	}	
 }
-
-/* this method should read all recipes in the Package "recipes" and use a searchString, which is the value 
-from ingredient Property, to search through the content of every recipe and eventually show
-the matching recipe in the view.displayRezept TextArea
-
-open questions:
-- how can I iterate through all recipes with the searchString?
-- how can I iterate with two searchStrings through the recipe?
-- what possibilities do I have if multiple recipes match the two searchStrings?
-*/
 
 
 

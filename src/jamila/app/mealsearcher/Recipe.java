@@ -5,7 +5,7 @@ import java.net.URL;
 public class Recipe {
 	
 	private String name;
-	private Ingredients[] ingredient;
+	private Ingredients[] ingredients;
 	private String instructions;
 	private String urlToRecipe;
 	// TODO: amount change depending on how many people are eating
@@ -13,7 +13,7 @@ public class Recipe {
 	public Recipe (String name, String instructions, String urlToRecipe, Ingredients...in) {
 		this.name = name;
 		this.instructions = instructions;
-		this.ingredient = in;
+		this.ingredients = in;
 		this.urlToRecipe = urlToRecipe;
 	}
 	
@@ -42,12 +42,27 @@ public class Recipe {
 	}
 	
 	public Ingredients[] getIngredient() {
-		return ingredient;
+		return ingredients;
+	}
+	
+	public boolean hasIngredient (String chosenIngredient) {
+		boolean hasIngredient = false;
+		for (int i = 0; i<ingredients.length; i++) {
+			String in = ingredients[i].getIngredient();
+			if (in.contains(chosenIngredient)) {
+				hasIngredient = true;
+			}
+		}
+		return hasIngredient;
 	}
 	
 	public String toString() {
-		String recipeAsString = this.name + " \n" + this.instructions + " \n" + this.ingredient + " \n" + this.urlToRecipe;
+		String ingredient = "";
+		for (Ingredients i : ingredients) {
+			ingredient += i + "\n";
+		}
+		
+		String recipeAsString = this.name + " \n " + " \n " + this.instructions + " \n" + ingredient + " \n";
 		return recipeAsString;
 	}
-
 }

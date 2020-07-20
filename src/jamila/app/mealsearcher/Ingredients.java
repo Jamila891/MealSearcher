@@ -25,4 +25,9 @@ public class Ingredients {
 	public void setIngredient() {
 		this.ingredient = ingredient;
 	}
+	
+	public String toString() {
+		String IngredientString = this.amount + " " + this.ingredient;
+		return IngredientString;
+	}
 }

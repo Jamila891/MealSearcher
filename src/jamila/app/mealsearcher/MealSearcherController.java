@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Application;
@@ -18,7 +19,6 @@ public class MealSearcherController {
 	
 	private MealSearcherModel model;
 	private MealSearcherView view;
-	private Recipe recipe;
 	
 	public MealSearcherController(MealSearcherView view, MealSearcherModel model) {
 		this.view = view;
@@ -29,8 +29,7 @@ public class MealSearcherController {
 		
 		view.btnSearch.setOnAction(this::setTextOfChosenRecipe);
 		view.btnRecipeWeblink.setOnAction(this::openRecipeWeblink);
-		view.btnAddRecipe.setOnAction(this::addRecipe);
-		
+		view.ARaddRecipebtn.setOnAction(this::addNewRecipeToArrayList);
 	}
 	
 	public void setTextToProperty (String newValue) {
@@ -39,10 +38,9 @@ public class MealSearcherController {
 	}
 	
 	public void setTextOfChosenRecipe(ActionEvent event) {
-		Recipe r = model.findYourRecipe();
-		System.out.println(r.toString());
+		ArrayList<Recipe> r = model.findYourRecipe();
 	
-		//view.displayRezept.setText(r.toString());
+		view.displayRezept.setText(r.toString());
 	}
 	
 	public void openRecipeWeblink(ActionEvent e) {
@@ -60,9 +58,16 @@ public class MealSearcherController {
 			}
 	}
 	
-	public void addRecipe (ActionEvent e) {
+	public void addNewRecipeToArrayList (ActionEvent e) {
 		
-	
+		String name = view.ARnametxt.getText();
+		String instructions = view.ARinstructionstxt.getText();
+		String url = view.ARurltxt.getText();
+		String amount = view.ARamountxt.getText();
+		String ingredient = view.ARingredienttxt.getText();
+		
+		Recipe recipe = new Recipe(name, instructions, url, new Ingredients(amount, ingredient));
+		model.recipe.add(recipe);
 	}
 }
 
