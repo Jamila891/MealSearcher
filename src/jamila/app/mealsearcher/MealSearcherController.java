@@ -28,7 +28,8 @@ public class MealSearcherController {
 		view.txtIngredient1.textProperty().addListener((observable, oldValue, newValue) -> setTextToProperty(newValue));
 		
 		view.btnSearch.setOnAction(this::setTextOfChosenRecipe);
-		view.btnRecipeWeblink.setOnAction(this::openRecipeWeblink);
+		view.btnRecipeWeblink1.setOnAction(this::openRecipeWeblink);
+		view.btnRecipeWeblink2.setOnAction(this::openRecipeWeblink);
 		view.ARaddRecipebtn.setOnAction(this::addNewRecipeToArrayList);
 	}
 	
@@ -39,8 +40,23 @@ public class MealSearcherController {
 	
 	public void setTextOfChosenRecipe(ActionEvent event) {
 		ArrayList<Recipe> r = model.findYourRecipe();
-	
-		view.displayRezept.setText(r.toString());
+
+		Recipe recipe1 = null, recipe2 = null;
+		if (!r.isEmpty()) {
+			if (r.size() < 2) {
+				recipe1 = r.get(0);
+				view.recipe1.setText(recipe1.toString());
+			}
+			recipe1 = r.get(0);
+			recipe2 = r.get(1);
+			view.recipe1.setText(recipe1.toString());
+			view.recipe2.setText(recipe2.toString());
+		
+		} else {
+			view.recipe1.setText("No recipe available. Please add new Recipe in other Tab.");
+		}
+		
+		
 	}
 	
 	public void openRecipeWeblink(ActionEvent e) {

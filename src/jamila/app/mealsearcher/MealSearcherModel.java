@@ -17,7 +17,7 @@ public class MealSearcherModel {
 	
 	public SimpleStringProperty ingredient1;
 	public SimpleStringProperty ingredient2;
-	public ArrayList<Recipe> recipe, matchingRecipe;
+	public ArrayList<Recipe> recipe;
 	public Recipe chosenRecipe;
 	
 	public MealSearcherModel() {
@@ -25,7 +25,6 @@ public class MealSearcherModel {
 		this.ingredient2 = new SimpleStringProperty();
 		
 		this.recipe = new ArrayList<Recipe>();
-		this.matchingRecipe = new ArrayList<Recipe>();
 		recipe.add(new Recipe("Omlette", "Öl in die Pfanne und Teig rein", "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/HWL_TEIG1996_02/omeletten/", new Ingredients("300ml", "Milch")));
 		recipe.add(new Recipe("Zürich Geschnetzeltes", "Ein bisschen Fleisch, Nudeln und Rahmsauce in die Pfanne", "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/LM201401_83/zuercher-geschnetzeltes/", new Ingredients("5kg", "Rindfleisch")));
 		recipe.add(new Recipe("Milchreis", "Milch und Reis in die Pfanne geben und Hob de Bäse", "www.google.com", new Ingredients("5l", "Milch"), new Ingredients("2 Körner", "Reis")));
@@ -72,12 +71,14 @@ public class MealSearcherModel {
 		String searchString1 = getIngredient1();
 		String searchString2 = getIngredient2();
 		
+		ArrayList<Recipe> matchingRecipe = new ArrayList<Recipe>();
+		
 		for (Recipe r : recipe) {
 			if (r.hasIngredient(searchString1) && r.hasIngredient(searchString2)) {
-				this.matchingRecipe.add(r);
+				matchingRecipe.add(r);
 			}
 		}
-		return this.matchingRecipe;
+		return matchingRecipe;
 	}
 	
 	public String getURL() {

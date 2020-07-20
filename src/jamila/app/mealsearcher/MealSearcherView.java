@@ -15,10 +15,10 @@ public class MealSearcherView {
 	
 	private Stage stage;
 	private MealSearcherModel model;
-	Button btnSearch, btnRecipeWeblink, ARaddRecipebtn;
+	Button btnSearch, btnRecipeWeblink1, btnRecipeWeblink2, ARaddRecipebtn;
 	TextField txtIngredient1, txtIngredient2, ARnametxt, ARurltxt, ARamountxt, ARingredienttxt, ARinstructionstxt;
-	Label lblIngredient1, lblIngredient2, ARnamelbl, ARurllbl, ARingredientlbl, ARinstructionslbl, ARamountlbl, ARingredient;
-	TextArea displayRezept;
+	Label lblIngredient1, lblIngredient2, ARnamelbl, ARurllbl, ARingredientlbl, ARinstructionslbl, ARamountlbl, ARingredient, lblrecipe1, lblrecipe2;
+	TextArea recipe1, recipe2;
 	
 	public MealSearcherView(Stage stage, MealSearcherModel model) {
 		this.stage = stage;
@@ -32,10 +32,14 @@ public class MealSearcherView {
 		this.txtIngredient1 = new TextField();
 		this.txtIngredient2 = new TextField();
 		this.btnSearch = new Button("Search");
-		this.displayRezept = new TextArea();
-		this.btnRecipeWeblink = new Button("Find this recipe online!");
+		this.recipe1 = new TextArea();
+		this.recipe2 = new TextArea();
+		this.btnRecipeWeblink1 = new Button("Find this recipe online!");
+		this.btnRecipeWeblink2 = new Button("Find this recipe online!");
+		this.lblrecipe1 = new Label("Recipe 1");
+		this.lblrecipe2 = new Label("Recipe 2");
 		
-		searchRecipe.getChildren().addAll(lblIngredient1, txtIngredient1, lblIngredient2, txtIngredient2, btnSearch, displayRezept, btnRecipeWeblink);
+		searchRecipe.getChildren().addAll(lblIngredient1, txtIngredient1, lblIngredient2, txtIngredient2, btnSearch, lblrecipe1, recipe1, btnRecipeWeblink1, lblrecipe2, recipe2, btnRecipeWeblink2);
 		
 		VBox addNewRecipe = new VBox(15);
 		
