@@ -1,4 +1,5 @@
 package jamila.app.mealsearcher;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,6 +28,7 @@ public class MealSearcherView {
 		VBox root = new VBox();
 		
 		VBox searchRecipe = new VBox(15);
+		searchRecipe.setPadding(new Insets(20.0, 20.0, 20.0, 20.0));
 		this.lblIngredient1 = new Label("Ingredient 1");
 		this.lblIngredient2 = new Label("Ingredient 2");
 		this.txtIngredient1 = new TextField();
@@ -41,20 +43,8 @@ public class MealSearcherView {
 		
 		searchRecipe.getChildren().addAll(lblIngredient1, txtIngredient1, lblIngredient2, txtIngredient2, btnSearch, lblrecipe1, recipe1, btnRecipeWeblink1, lblrecipe2, recipe2, btnRecipeWeblink2);
 		
-		VBox addNewRecipe = new VBox(15);
-		
-		VBox labels = new VBox(15);
-		this.ARnamelbl = new Label("Name");
-		this.ARinstructionslbl = new Label ("Instructions");
-		this.ARurllbl = new Label("Weblink to Recipe");
-		this.ARingredientlbl = new Label ("Ingredients");
-		labels.getChildren().addAll(ARnamelbl, ARinstructionslbl, ARurllbl, ARingredientlbl);
-		
-		VBox textfields = new VBox();
-		this.ARnametxt = new TextField();
-		this.ARinstructionstxt = new TextField();
-		this.ARurltxt = new TextField();
-		
+		VBox addNewRecipe = new VBox(50);
+		addNewRecipe.setPadding(new Insets(20.0, 20.0, 20.0, 20.0));
 		VBox amount = new VBox();
 		this.ARamountxt = new TextField();
 		this.ARamountlbl = new Label ("Amount");
@@ -65,17 +55,21 @@ public class MealSearcherView {
 		this.ARingredienttxt = new TextField();
 		ingredient.getChildren().addAll(ARingredient, ARingredienttxt);
 		
-		HBox h = new HBox();
+		HBox h = new HBox(15);
 		h.getChildren().addAll(amount, ingredient);
 		
-		textfields.getChildren().addAll(ARnametxt, ARinstructionstxt, ARurltxt, h);
-		
-		HBox hbox = new HBox();
-		hbox.getChildren().addAll(labels, textfields);
-		
+		VBox labels = new VBox(15);
+		this.ARnamelbl = new Label("Name");
+		this.ARnametxt = new TextField();
+		this.ARinstructionslbl = new Label ("Instructions");
+		this.ARinstructionstxt = new TextField();
+		this.ARurllbl = new Label("Weblink to Recipe");
+		this.ARurltxt = new TextField();
+		this.ARingredientlbl = new Label ("Ingredients");
 		this.ARaddRecipebtn = new Button ("Add Recipe");
+		labels.getChildren().addAll(ARnamelbl,ARnametxt, ARinstructionslbl, ARinstructionstxt, ARurllbl, ARurltxt, ARingredientlbl, h, ARaddRecipebtn);
 		
-		addNewRecipe.getChildren().addAll(hbox, ARaddRecipebtn);
+		addNewRecipe.getChildren().add(labels);
 		
 		Tab searchRecipeTab = new Tab ("Search for Recipes");
 		searchRecipeTab.setContent(searchRecipe);
@@ -90,7 +84,7 @@ public class MealSearcherView {
 		
 		root.getChildren().addAll(tabPane, searchRecipe, addNewRecipe);
 		
-		Scene scene = new Scene(root, 900, 500);
+		Scene scene = new Scene(root, 1280, 839);
 		stage.setScene(scene);
 		stage.setTitle("Meal Searcher");
 		stage.setResizable(true);

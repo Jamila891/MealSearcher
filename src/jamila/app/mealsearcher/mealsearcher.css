@@ -3,9 +3,17 @@
 	-fx-background-image: url("myBackground.jpeg");
 }
 
+.header {
+	-fx-font-size: 50px;
+}
+
 .button {
-	-fx-font-size: 10px;
+	-fx-font-size: 15px;
 	-fx-font-weight: bold;
+	-fx-text-fill: #81BEF7;
+	-fx-min-height: 40px;
+	-fx-max-width: 200px;
+	-fx-style-color: #8A4B08;
 }
 
 .lblIngredient1 {
@@ -14,8 +22,17 @@
 }
 
 .textfield {
-  height: 50px;
-  width: 100px;
-  background-color: #555;
-  border-radius: 50%;
+ style-color: #81BEF7;
 }
+
+.label {
+	-fx-font-size: 20px;
+	-fx-font-weight: bold;
+	-fx-text-fill: #01A9DB;
+	-fx-background-color: #E6E6E6;
+}
+
+.TabPane {
+	-fx-font-size: 20px;
+	-fx-font-weight: bold;
+} 

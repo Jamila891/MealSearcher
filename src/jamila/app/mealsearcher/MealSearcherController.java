@@ -54,17 +54,17 @@ public class MealSearcherController {
 		switch (r.size()) {
 		
 		case 0: view.recipe1.setText("No recipe available. Please add new Recipe in other Tab.");
-			break;
+				break;
 		
 		case 1: recipe1 = r.get(0);
-		view.recipe1.setText(recipe1.toString());
-			break;
+				view.recipe1.setText(recipe1.toString());
+				break;
 		
 		case 2: recipe1 = r.get(0);
-		recipe2 = r.get(1);
-		view.recipe1.setText(recipe1.toString());
-		view.recipe2.setText(recipe2.toString());
-			break;
+				recipe2 = r.get(1);
+				view.recipe1.setText(recipe1.toString());
+				view.recipe2.setText(recipe2.toString());
+				break;
 		
 		default: view.recipe1.setText("There are more than 2 recipe according to your Searchterm. Please specify.");
 		
@@ -73,6 +73,7 @@ public class MealSearcherController {
 	
 	public void openRecipeWeblink(ActionEvent e) {
 		String url = model.getURL();
+		System.out.println(url);
 		
 		try {
 			  Desktop desktop = java.awt.Desktop.getDesktop();
@@ -84,7 +85,7 @@ public class MealSearcherController {
 			  	}
 				} catch (URISyntaxException ex) {
 					ex.printStackTrace();
-				}
+			}
 	}
 	
 	public void addNewRecipeToArrayList (ActionEvent e) {
