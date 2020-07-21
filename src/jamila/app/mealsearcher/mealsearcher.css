@@ -13,16 +13,29 @@
 	-fx-text-fill: #81BEF7;
 	-fx-min-height: 40px;
 	-fx-max-width: 200px;
-	-fx-style-color: #8A4B08;
+	-fx-background-color: #FE2EF7;
+	
 }
 
 .lblIngredient1 {
 	-fx-font-size: 25px;
 	-fx-text-fill: #CC2EFA;
+	-fx-border-radius: 30px;
 }
 
-.textfield {
- style-color: #81BEF7;
+.text-area {
+	 -fx-border-color: #61380B;
+	 -fx-border-style: dashed;
+}
+
+.text-area .content{
+      -fx-background-color: #61380B;
+      -fx-border-style: dashed;
+  }
+  
+.text-field {
+	-fx-background-color: #61380B;
+	-fx-border-color: #01A9DB;
 }
 
 .label {

@@ -19,6 +19,7 @@ public class MealSearcherController {
 	
 	private MealSearcherModel model;
 	private MealSearcherView view;
+	Recipe recipe1 = null, recipe2 = null;
 	
 	public MealSearcherController(MealSearcherView view, MealSearcherModel model) {
 		this.view = view;
@@ -28,8 +29,6 @@ public class MealSearcherController {
 		view.txtIngredient1.textProperty().addListener((observable, oldValue, newValue) -> setTextToProperty(newValue));
 		
 		view.btnSearch.setOnAction(this::setTextOfChosenRecipe);
-		view.btnRecipeWeblink1.setOnAction(this::openRecipeWeblink);
-		view.btnRecipeWeblink2.setOnAction(this::openRecipeWeblink);
 		view.ARaddRecipebtn.setOnAction(this::addNewRecipeToArrayList);
 	}
 	
@@ -41,15 +40,15 @@ public class MealSearcherController {
 	public void setTextOfChosenRecipe(ActionEvent event) {
 		ArrayList<Recipe> r = model.findYourRecipe();
 		
-		/* Wenn ich Rindfleisch (Ingredient1) und Milch (Ingredient2) eingebe, dann bekomme ich nur das Rezept Rindfleisch 
-		aber wenn ich Milch und Rindfleisch eingebe, bekomme ich alle 4 Rezepte. Why?
-		*/
+		view.recipe1.clear();
+		view.recipe2.clear();
+		view.recipe2.setVisible(true);
+		view.btnRecipeWeblink2.setVisible(true);
+		view.lblrecipe2.setVisible(true);
 		
 		for (Recipe re : r) {
 			System.out.println(re);
 		}
-
-		Recipe recipe1 = null, recipe2 = null;
 		
 		switch (r.size()) {
 		
@@ -58,12 +57,18 @@ public class MealSearcherController {
 		
 		case 1: recipe1 = r.get(0);
 				view.recipe1.setText(recipe1.toString());
+				view.btnRecipeWeblink1.setOnAction(e -> openRecipeWeblink(recipe1.getUrlToRecipe()));
+				view.recipe2.setVisible(false);
+				view.btnRecipeWeblink2.setVisible(false);
+				view.lblrecipe2.setVisible(false);
 				break;
 		
 		case 2: recipe1 = r.get(0);
 				recipe2 = r.get(1);
 				view.recipe1.setText(recipe1.toString());
+				view.btnRecipeWeblink1.setOnAction(e -> openRecipeWeblink(recipe1.getUrlToRecipe()));
 				view.recipe2.setText(recipe2.toString());
+				view.btnRecipeWeblink2.setOnAction(e -> openRecipeWeblink(recipe2.getUrlToRecipe()));
 				break;
 		
 		default: view.recipe1.setText("There are more than 2 recipe according to your Searchterm. Please specify.");
@@ -71,10 +76,7 @@ public class MealSearcherController {
 		}
 	}
 	
-	public void openRecipeWeblink(ActionEvent e) {
-		String url = model.getURL();
-		System.out.println(url);
-		
+	public void openRecipeWeblink(String url) {		
 		try {
 			  Desktop desktop = java.awt.Desktop.getDesktop();
 			  URI oURL = new URI(url);
