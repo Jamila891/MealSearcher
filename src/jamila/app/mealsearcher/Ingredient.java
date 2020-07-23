@@ -1,11 +1,11 @@
 package jamila.app.mealsearcher;
 
-public class Ingredients {
+public class Ingredient {
 	
 	private String amount;
 	private String ingredient;
 	
-	public Ingredients (String amount, String ingredient) {
+	public Ingredient (String amount, String ingredient) {
 		this.amount = amount;
 		this.ingredient = ingredient;
 	}

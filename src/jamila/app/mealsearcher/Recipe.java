@@ -5,12 +5,12 @@ import java.net.URL;
 public class Recipe {
 	
 	private String name;
-	private Ingredients[] ingredients;
+	private Ingredient[] ingredients;
 	private String instructions;
 	private String urlToRecipe;
 	// TODO: amount change depending on how many people are eating
 	
-	public Recipe (String name, String instructions, String urlToRecipe, Ingredients...in) {
+	public Recipe (String name, String instructions, String urlToRecipe, Ingredient...in) {
 		this.name = name;
 		this.instructions = instructions;
 		this.ingredients = in;
@@ -41,7 +41,7 @@ public class Recipe {
 		this.urlToRecipe = urlToRecipe;
 	}
 	
-	public Ingredients[] getIngredient() {
+	public Ingredient[] getIngredient() {
 		return ingredients;
 	}
 	
@@ -58,7 +58,7 @@ public class Recipe {
 	
 	public String toString() {
 		String ingredient = "";
-		for (Ingredients i : ingredients) {
+		for (Ingredient i : ingredients) {
 			ingredient += i + "\n";
 		}
 		

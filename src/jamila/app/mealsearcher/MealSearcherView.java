@@ -16,10 +16,10 @@ public class MealSearcherView {
 	
 	private Stage stage;
 	private MealSearcherModel model;
-	Button btnSearch, btnRecipeWeblink1, btnRecipeWeblink2, ARaddRecipebtn;
-	TextField txtIngredient1, txtIngredient2, ARnametxt, ARurltxt, ARamountxt, ARingredienttxt, ARinstructionstxt;
-	Label lblIngredient1, lblIngredient2, ARnamelbl, ARurllbl, ARingredientlbl, ARinstructionslbl, ARamountlbl, ARingredient, lblrecipe1, lblrecipe2;
-	TextArea recipe1, recipe2;
+	public Button btnSearch, btnRecipeWeblink1, btnRecipeWeblink2, ARaddRecipebtn;
+	public TextField txtIngredient1, txtIngredient2, ARnametxt, ARurltxt, ARamountxt, ARingredienttxt, ARinstructionstxt;
+	public Label lblIngredient1, lblIngredient2, ARnamelbl, ARurllbl, ARingredientlbl, ARinstructionslbl, ARamountlbl, ARingredient, lblrecipe1, lblrecipe2;
+	public TextArea recipe1, recipe2;
 	
 	public MealSearcherView(Stage stage, MealSearcherModel model) {
 		this.stage = stage;

@@ -27,10 +27,10 @@ public class MealSearcherModel {
 		this.ingredient2 = new SimpleStringProperty();
 		
 		this.recipe = new ArrayList<Recipe>();
-		recipe.add(new Recipe("Omlette", "Öl in die Pfanne und Teig rein", "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/HWL_TEIG1996_02/omeletten/", new Ingredients("300ml", "Milch")));
-		recipe.add(new Recipe("Zürich Geschnetzeltes", "Ein bisschen Fleisch, Nudeln und Rahmsauce in die Pfanne", "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/LM201401_83/zuercher-geschnetzeltes/", new Ingredients("5kg", "Rindfleisch")));
-		recipe.add(new Recipe("Milchreis", "Milch und Reis in die Pfanne geben und Hob de Bäse", "https://www.google.com/?client=safari", new Ingredients("5l", "Milch"), new Ingredients("2 Körner", "Reis")));
-		recipe.add(new Recipe("Milch", "Milch trinken", "www.milch.ch", new Ingredients("5l", "Milch")));
+		recipe.add(new Recipe("Omlette", "Öl in die Pfanne und Teig rein", "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/HWL_TEIG1996_02/omeletten/", new Ingredient("300ml", "Milch")));
+		recipe.add(new Recipe("Zürich Geschnetzeltes", "Ein bisschen Fleisch, Nudeln und Rahmsauce in die Pfanne", "https://www.swissmilk.ch/de/rezepte-kochideen/rezepte/LM201401_83/zuercher-geschnetzeltes/", new Ingredient("5kg", "Rindfleisch")));
+		recipe.add(new Recipe("Milchreis", "Milch und Reis in die Pfanne geben und Hob de Bäse", "https://www.google.com/?client=safari", new Ingredient("5l", "Milch"), new Ingredient("2 Körner", "Reis")));
+		recipe.add(new Recipe("Milch", "Milch trinken", "www.milch.ch", new Ingredient("5l", "Milch")));
 	}
 	
 	public SimpleStringProperty ingredient1Property() {		

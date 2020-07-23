@@ -29,7 +29,7 @@ public class MealSearcherController {
 		view.txtIngredient1.textProperty().addListener((observable, oldValue, newValue) -> setTextToProperty(newValue));
 		
 		view.btnSearch.setOnAction(this::setTextOfChosenRecipe);
-		view.ARaddRecipebtn.setOnAction(this::addNewRecipeToArrayList);
+		//view.ARaddRecipebtn.setOnAction(this::addNewRecipeToDatabase);
 	}
 	
 	public void setTextToProperty (String newValue) {
@@ -90,16 +90,7 @@ public class MealSearcherController {
 			}
 	}
 	
-	public void addNewRecipeToArrayList (ActionEvent e) {
-		String name = view.ARnametxt.getText();
-		String instructions = view.ARinstructionstxt.getText();
-		String url = view.ARurltxt.getText();
-		String amount = view.ARamountxt.getText();
-		String ingredient = view.ARingredienttxt.getText();
-		
-		Recipe recipe = new Recipe(name, instructions, url, new Ingredients(amount, ingredient));
-		model.recipe.add(recipe);
-	}
+	
 }
 
 
