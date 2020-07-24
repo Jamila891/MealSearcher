@@ -1,4 +1,4 @@
-package jamila.app.mealsearcher;
+package jamila.app.mealsearcherMVC;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import jamila.app.recipe.Recipe;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Hyperlink;
@@ -38,6 +39,8 @@ public class MealSearcherController {
 	}
 	
 	public void setTextOfChosenRecipe(ActionEvent event) {
+		try {
+			
 		ArrayList<Recipe> r = model.findYourRecipe();
 		
 		view.recipe1.clear();
@@ -72,7 +75,10 @@ public class MealSearcherController {
 				break;
 		
 		default: view.recipe1.setText("There are more than 2 recipe according to your Searchterm. Please specify.");
+		}
 		
+		} catch (NullPointerException e) {
+			view.recipe1.setText(e.getMessage());
 		}
 	}
 	

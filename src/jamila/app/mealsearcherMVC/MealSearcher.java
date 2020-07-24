@@ -1,4 +1,4 @@
-package jamila.app.mealsearcher;
+package jamila.app.mealsearcherMVC;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

@@ -1,4 +1,4 @@
-package jamila.app.mealsearcher;
+package jamila.app.recipe;
 
 import java.net.URL;
 

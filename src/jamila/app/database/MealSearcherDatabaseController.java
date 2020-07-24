@@ -1,8 +1,8 @@
 package jamila.app.database;
 
-import jamila.app.mealsearcher.Ingredient;
-import jamila.app.mealsearcher.MealSearcherView;
-import jamila.app.mealsearcher.Recipe;
+import jamila.app.mealsearcherMVC.MealSearcherView;
+import jamila.app.recipe.Ingredient;
+import jamila.app.recipe.Recipe;
 import javafx.event.ActionEvent;
 
 public class MealSearcherDatabaseController {
