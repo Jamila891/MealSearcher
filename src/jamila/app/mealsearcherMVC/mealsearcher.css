@@ -10,10 +10,14 @@
 .button {
 	-fx-font-size: 15px;
 	-fx-font-weight: bold;
-	-fx-text-fill: #FF4000;
+	-fx-text-fill: #2E64FE;
 	-fx-min-height: 40px;
 	-fx-max-width: 200px;
 	-fx-background-color: #D8D8D8;
+}
+
+.button:hover {
+	-fx-background-color: #A9E2F3;
 }
 
 .lblIngredient1 {
@@ -28,13 +32,13 @@
 }
 
 .text-area .content{
-      -fx-background-color: #61380B;
+      -fx-background-color: #DBA901;
       -fx-border-style: dashed;
       
   }
   
 .text-field {
-	-fx-background-color: #61380B;
+	-fx-background-color: #DBA901;
 	-fx-text-fill: #FFFFFF;
 }
 
@@ -44,7 +48,22 @@
 	-fx-text-fill: #D8D8D8;
 }
 
-.TabPane {
-	-fx-font-size: 20px;
+.tab-pane{
+    -fx-padding: 0 -1 -1 -1;
+}
+
+.tab-pane:top *.tab-header-area {
+	-fx-font-size: 16px;
 	-fx-font-weight: bold;
-} 
+	
+}
+
+.tab {
+	-fx-background-color: #D8D8D8;
+	-fx-text-fill: #2E64FE;
+}
+
+.tab:hover{
+	-fx-background-color: #A9E2F3;
+	
+}

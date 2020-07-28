@@ -9,22 +9,23 @@ public class MealSearcherDatabaseController {
 	
 	private MealSearcherView view;
 	private Recipe recipe;
+	private static int RecipeNo = 0;
 
 	public void addNewRecipeToDatabase (ActionEvent e) {
-		String name = view.ARnametxt.getText();
-		String instructions = view.ARinstructionstxt.getText();
-		String url = view.ARurltxt.getText();
+		RecipeNo++;
+		String Name = view.ARnametxt.getText();
+		String Instructions = view.ARinstructionstxt.getText();
+		String URL = view.ARurltxt.getText();
 		String amount = view.ARamountxt.getText();
 		String ingredient = view.ARingredienttxt.getText();
+		Ingredient Ingredient = new Ingredient(amount, ingredient);
 		
-		recipe = new Recipe (name, instructions, url, new Ingredient(amount, ingredient));
-		
-//		String qu = "INSERT INTO MEALSEARCHER (" +
-//		" ' " + RecipeNo +
-//		" ' " + Name +
-//		" ' " + Instructions +
-//		" ' " + URL +
-//		" ' " + Ingredient + "" +
-//		")";
+		String qu = "INSERT INTO MEALSEARCHER.Recipe (" +
+		" ' " + RecipeNo +
+		" ' " + Name +
+		" ' " + Instructions +
+		" ' " + URL +
+		" ' " + Ingredient + "" +
+		")";
 	}
 }

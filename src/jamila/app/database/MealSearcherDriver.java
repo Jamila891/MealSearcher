@@ -4,21 +4,21 @@ import java.sql.*;
 
 public class MealSearcherDriver {
 
-	public static void main(String[] args) {
+	public void executeDatabase () {
 		
 		try {
-			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MealSearcher", "jamila", "jamila");
+			Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MealSearcher?serverTimezone=CET", "root", "badweg17!");
 			Statement myStatement = myConn.createStatement();
-			ResultSet myRs = myStatement.executeQuery("select * from MealSearcher.Recipe");
+			ResultSet myRs = myStatement.executeQuery("SELECT * FROM MealSearcher.Recipe");
 			
 			while (myRs.next()) {
+				System.out.println("Hallo");
 				System.out.println(myRs.getString("Name") + " " + myRs.getString("URL") + " " + myRs.getString("Ingredient"));
 			}
 			
 		} catch (Exception e) {
-			// do nothing yet
+			e.printStackTrace();
 		}
 
 	}
-
 }

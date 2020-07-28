@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import jamila.app.database.MealSearcherDatabaseController;
 import jamila.app.recipe.Recipe;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -30,7 +31,7 @@ public class MealSearcherController {
 		view.txtIngredient1.textProperty().addListener((observable, oldValue, newValue) -> setTextToProperty(newValue));
 		
 		view.btnSearch.setOnAction(this::setTextOfChosenRecipe);
-		//view.ARaddRecipebtn.setOnAction(this::addNewRecipeToDatabase);
+		//view.ARaddRecipebtn.setOnAction(MealSearcherDatabaseController::addNewRecipeToDatabase);
 	}
 	
 	public void setTextToProperty (String newValue) {
@@ -48,10 +49,6 @@ public class MealSearcherController {
 		view.recipe2.setVisible(true);
 		view.btnRecipeWeblink2.setVisible(true);
 		view.lblrecipe2.setVisible(true);
-		
-		for (Recipe re : r) {
-			System.out.println(re);
-		}
 		
 		switch (r.size()) {
 		
