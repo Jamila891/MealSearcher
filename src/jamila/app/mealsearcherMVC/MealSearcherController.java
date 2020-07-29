@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import jamila.app.database.MealSearcherDatabaseController;
+import jamila.app.database.MealSearcherDriver;
 import jamila.app.recipe.Recipe;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -22,11 +22,12 @@ public class MealSearcherController {
 	private MealSearcherModel model;
 	private MealSearcherView view;
 	Recipe recipe1 = null, recipe2 = null;
-	private MealSearcherDatabaseController database;
+	private MealSearcherDriver driver;
 	
 	public MealSearcherController(MealSearcherView view, MealSearcherModel model) {
 		this.view = view;
 		this.model = model;
+		driver = new MealSearcherDriver();
 		
 		view.txtIngredient1.textProperty().addListener((observable, oldValue, newValue) -> setTextToProperty(newValue));
 		view.txtIngredient1.textProperty().addListener((observable, oldValue, newValue) -> setTextToProperty(newValue));
@@ -95,7 +96,7 @@ public class MealSearcherController {
 	}
 	
 	public void addNewRecipe (ActionEvent e) {
-		database.addNewRecipeToDatabase();
+		driver.updateDatabase();
 	}
 
 }

@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import jamila.app.database.MealSearcherDriver;
 import jamila.app.recipe.Ingredient;
 import jamila.app.recipe.Recipe;
 import javafx.beans.property.SimpleStringProperty;
@@ -22,13 +23,14 @@ public class MealSearcherModel {
 	public SimpleStringProperty ingredient2;
 	public ArrayList<Recipe> recipe;
 	public Recipe r;
-	public File file;
+	public MealSearcherDriver driver;
 	
 	public MealSearcherModel() {
 		this.ingredient1 = new SimpleStringProperty();
 		this.ingredient2 = new SimpleStringProperty();
 		
-		this.recipe = new ArrayList<Recipe>();
+		driver = new MealSearcherDriver();
+		this.recipe = driver.readDatabase();
 	}
 	
 	public SimpleStringProperty ingredient1Property() {		

@@ -8,7 +8,6 @@ public class MealSearcher extends Application {
 	private MealSearcherView view;
 	private MealSearcherModel model;
 	private MealSearcherController controller;
-	private MealSearcherDriver driver;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -21,8 +20,5 @@ public class MealSearcher extends Application {
 		controller = new MealSearcherController(view, model);
 		
 		view.start();
-		
-		driver = new MealSearcherDriver();
-		driver.executeDatabase();
 	}	
 }
