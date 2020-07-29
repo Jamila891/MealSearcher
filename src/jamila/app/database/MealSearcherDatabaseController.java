@@ -11,7 +11,7 @@ public class MealSearcherDatabaseController {
 	private Recipe recipe;
 	private static int RecipeNo = 0;
 
-	public void addNewRecipeToDatabase (ActionEvent e) {
+	public void addNewRecipeToDatabase () {
 		RecipeNo++;
 		String Name = view.ARnametxt.getText();
 		String Instructions = view.ARinstructionstxt.getText();
@@ -20,12 +20,7 @@ public class MealSearcherDatabaseController {
 		String ingredient = view.ARingredienttxt.getText();
 		Ingredient Ingredient = new Ingredient(amount, ingredient);
 		
-		String qu = "INSERT INTO MEALSEARCHER.Recipe (" +
-		" ' " + RecipeNo +
-		" ' " + Name +
-		" ' " + Instructions +
-		" ' " + URL +
-		" ' " + Ingredient + "" +
-		")";
+		String qu = "INSERT INTO Recipe RecipeNo, Name, Instructions, URL, Ingredient VALUES (" + RecipeNo + " " + Name + " " + Instructions + " " + URL + " " + Ingredient;
+		
 	}
 }

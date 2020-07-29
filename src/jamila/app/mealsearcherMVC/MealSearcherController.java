@@ -22,6 +22,7 @@ public class MealSearcherController {
 	private MealSearcherModel model;
 	private MealSearcherView view;
 	Recipe recipe1 = null, recipe2 = null;
+	private MealSearcherDatabaseController database;
 	
 	public MealSearcherController(MealSearcherView view, MealSearcherModel model) {
 		this.view = view;
@@ -31,7 +32,7 @@ public class MealSearcherController {
 		view.txtIngredient1.textProperty().addListener((observable, oldValue, newValue) -> setTextToProperty(newValue));
 		
 		view.btnSearch.setOnAction(this::setTextOfChosenRecipe);
-		//view.ARaddRecipebtn.setOnAction(MealSearcherDatabaseController::addNewRecipeToDatabase);
+		view.ARaddRecipebtn.setOnAction(this::addNewRecipe);
 	}
 	
 	public void setTextToProperty (String newValue) {
@@ -93,7 +94,10 @@ public class MealSearcherController {
 			}
 	}
 	
-	
+	public void addNewRecipe (ActionEvent e) {
+		database.addNewRecipeToDatabase();
+	}
+
 }
 
 
