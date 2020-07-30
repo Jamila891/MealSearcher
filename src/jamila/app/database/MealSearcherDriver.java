@@ -13,7 +13,9 @@ public class MealSearcherDriver {
 	private MealSearcherView view;
 	public Connection myConn;
 	
-	public MealSearcherDriver () {
+	public MealSearcherDriver (MealSearcherView view) {
+		this.view = view;
+		
 		try {
 			myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MealSearcher?serverTimezone=CET", "root", "badweg17!");
 		} catch (Exception e) {
@@ -26,14 +28,14 @@ public class MealSearcherDriver {
 		ArrayList<Recipe> listWithAllRecipesFromDatabase = new ArrayList<Recipe>();
 		try {
 			myStatement = myConn.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT * FROM Recipe INNER JOIN Ingredient ON Recipe.RecipeNo = PK_Ingredient_ID");
+			ResultSet myRs = myStatement.executeQuery("SELECT r.*, i.Amount, i.Ingredient_Name FROM Recipe r INNER JOIN Ingredient i ON r.RecipeNo = i.RecipeID");
 			while(myRs.next()) {
 				int ID = myRs.getInt(1);
 				String name = myRs.getString(2);
 				String instructions = myRs.getString(3);
 				String URL = myRs.getString(4);
-				String amount = myRs.getString(6);
-				String in = myRs.getString(7);
+				String amount = myRs.getString(5);
+				String in = myRs.getString(6);
 				Ingredient ingredient = new Ingredient(amount, in);
 				Recipe recipe = new Recipe(ID, name, instructions, URL, ingredient);
 				boolean recipeAlreadyExists = false;
@@ -57,16 +59,26 @@ public class MealSearcherDriver {
 	}
 	
 	public void updateDatabase () {
-		String sqlStatement = "INSERT INTO Recipe RecipeNo, Name, Instructions, URL, Ingredient VALUES (?,?,?,?,?)";
-		PreparedStatement ps;
+		String recipeQuery = "INSERT INTO Recipe (Name, Instructions, URL) VALUES (?,?,?)";
+		String ingredientQuery = "INSERT INTO Ingredient (Amount, Ingredient_Name, RecipeID) VALUES (?,?,?)";
+		PreparedStatement rq,iq;
+		
 		try {
-			ps = myConn.prepareStatement(sqlStatement);
-			ps.setString(2, view.ARnametxt.getText());
-			ps.setString(3, view.ARinstructionstxt.getText());
-			ps.setString(4, view.ARurltxt.getText());
-			ps.setString(6, view.ARamountxt.getText());
-			ps.setString(7, view.ARingredienttxt.getText());
-			ps.executeUpdate();
+			rq = myConn.prepareStatement(recipeQuery, Statement.RETURN_GENERATED_KEYS);
+			rq.setString(1, view.ARnametxt.getText());
+			rq.setString(2, view.ARinstructionstxt.getText());
+			rq.setString(3, view.ARurltxt.getText());
+			rq.executeUpdate();
+			
+			iq = myConn.prepareStatement(ingredientQuery);
+			iq.setString(1, view.ARamountxt.getText());
+			iq.setString(2, view.ARingredient.getText());
+			ResultSet rs = rq.getGeneratedKeys();
+			rs.next();
+			int id = rs.getInt(1);
+			iq.setInt(3, id);
+			iq.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

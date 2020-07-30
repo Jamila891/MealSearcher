@@ -11,7 +11,11 @@ import jamila.app.database.MealSearcherDriver;
 import jamila.app.recipe.Recipe;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -27,13 +31,15 @@ public class MealSearcherController {
 	public MealSearcherController(MealSearcherView view, MealSearcherModel model) {
 		this.view = view;
 		this.model = model;
-		driver = new MealSearcherDriver();
+		driver = new MealSearcherDriver(view);
+		model.setRecipes(driver.readDatabase());
 		
 		view.txtIngredient1.textProperty().addListener((observable, oldValue, newValue) -> setTextToProperty(newValue));
 		view.txtIngredient1.textProperty().addListener((observable, oldValue, newValue) -> setTextToProperty(newValue));
 		
 		view.btnSearch.setOnAction(this::setTextOfChosenRecipe);
 		view.ARaddRecipebtn.setOnAction(this::addNewRecipe);
+		view.addAnotherIngredient.setOnAction(this::addAnotherIngredient);
 	}
 	
 	public void setTextToProperty (String newValue) {
@@ -97,6 +103,10 @@ public class MealSearcherController {
 	
 	public void addNewRecipe (ActionEvent e) {
 		driver.updateDatabase();
+	}
+	
+	public void addAnotherIngredient (ActionEvent e) {
+		view.addAnotherIngredient();
 	}
 
 }

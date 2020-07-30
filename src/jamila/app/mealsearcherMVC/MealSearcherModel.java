@@ -23,14 +23,10 @@ public class MealSearcherModel {
 	public SimpleStringProperty ingredient2;
 	public ArrayList<Recipe> recipe;
 	public Recipe r;
-	public MealSearcherDriver driver;
 	
 	public MealSearcherModel() {
 		this.ingredient1 = new SimpleStringProperty();
 		this.ingredient2 = new SimpleStringProperty();
-		
-		driver = new MealSearcherDriver();
-		this.recipe = driver.readDatabase();
 	}
 	
 	public SimpleStringProperty ingredient1Property() {		
@@ -64,6 +60,10 @@ public class MealSearcherModel {
 			chosenRecipe = cr;
 		}
 		return chosenRecipe;
+	}
+	
+	public void setRecipes(ArrayList<Recipe> r) {
+		this.recipe = r;
 	}
 	
 	public ArrayList<Recipe> findYourRecipe() {

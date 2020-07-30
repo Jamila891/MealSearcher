@@ -49,6 +49,10 @@ public class Recipe {
 		return this.ID;
 	}
 	
+	public void setID(int ID) {
+		this.ID = ID;
+	}
+	
 	public ArrayList<Ingredient> getIngredient() {
 		return ingredients;
 	}
